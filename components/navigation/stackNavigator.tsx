@@ -4,7 +4,7 @@ import LoginScreen from '../../screens/auth';
 import SignupScreen from '../../screens/signup';
 import ForgotPasswordScreen from '../../screens/forgot-password';
 import {UserContext} from '../../config/user-context';
-import TabNavigator from './tabNavigator';
+import HomePage from '../Homepage/home';
 import Splash from '../shared/loading-splash';
 
 export default function StackNavigator() {
@@ -23,7 +23,7 @@ export default function StackNavigator() {
         </Navigator>
       ) : (
         <Navigator headerMode="none">
-          <Screen name="Main" component={TabNavigator} />
+          <Screen name="Main" component={HomePage} />
         </Navigator>
       )}
     </>
