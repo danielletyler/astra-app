@@ -7,6 +7,8 @@ import {UserContext} from '../../config/user-context';
 import HomePage from '../Homepage/home';
 import Splash from '../shared/loading-splash';
 
+import Profile from '../../screens/profile';
+
 export default function StackNavigator() {
   const {user, isLoading} = useContext(UserContext);
 
@@ -23,9 +25,11 @@ export default function StackNavigator() {
         </Navigator>
       ) : (
         <Navigator headerMode="none">
-          <Screen name="Main" component={HomePage} />
+          <Screen name="Main" component={Profile} />
         </Navigator>
       )}
     </>
   );
 }
+
+/*change user ? back to !user ? */

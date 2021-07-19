@@ -24,6 +24,10 @@ export default function SignUpForm() {
     email: '',
     password: '',
     confirmpassword: '',
+    first_name: '',
+    last_name: '',
+    birthdayMonth: '',
+    birthdayDay: '',
   });
   const [error, setError] = useState({
     type: '',
@@ -65,6 +69,10 @@ export default function SignUpForm() {
         setIsLoading(true);
         const result = await signup(info.email, info.password, {
           id: '',
+          first_name: info.first_name,
+          last_name: info.last_name,
+          birthdayMonth: info.birthdayMonth,
+          birthdayDay: info.birthdayDay,
         });
         if (result.status === 'success') {
           Toast.show({type: 'success', text1: 'Success'});
@@ -106,7 +114,37 @@ export default function SignUpForm() {
             <Text category="h3" style={styles.title}>
               Sign Up
             </Text>
-            <View style={styles.names}></View>
+            <View style={styles.names}>
+              <Input
+                style={styles.inputNames}
+                placeholder="First Name*"
+                value={info.first_name}
+                onChangeText={name =>
+                  setInfo(prevState => ({
+                    ...prevState,
+                    first_name: name,
+                  }))
+                }
+                status={error.type === 'firstname' ? 'danger' : 'basic'}
+              />
+              <Input
+                style={styles.inputNames}
+                placeholder="Last Name*"
+                value={info.last_name}
+                onChangeText={name =>
+                  setInfo(prevState => ({
+                    ...prevState,
+                    last_name: name,
+                  }))
+                }
+                status={error.type === 'lastname' ? 'danger' : 'basic'}
+              />
+            </View>
+            <Text style={styles.response}>
+              {error.type === 'firstname' || error.type === 'lastname'
+                ? error.response
+                : ''}
+            </Text>
             <Input
               placeholder="Email Address*"
               value={info.email}
@@ -158,6 +196,36 @@ export default function SignUpForm() {
             />
             <Text style={styles.response}>
               {error.type === 'confirmpassword' ? error.response : ''}
+            </Text>
+            <Input
+              placeholder="Birth Month as a number*"
+              value={info.birthdayMonth}
+              onChangeText={value =>
+                setInfo(prevState => ({
+                  ...prevState,
+                  birthdayMonth: value,
+                }))
+              }
+              autoCapitalize="none"
+              status={error.type === 'birthmonth' ? 'danger' : 'basic'}
+            />
+            <Text style={styles.response}>
+              {error.type === 'birthmonth' ? error.response : ''}
+            </Text>
+            <Input
+              placeholder="Birth Day*"
+              value={info.birthdayDay}
+              onChangeText={value =>
+                setInfo(prevState => ({
+                  ...prevState,
+                  birthdayDay: value,
+                }))
+              }
+              autoCapitalize="none"
+              status={error.type === 'birthday' ? 'danger' : 'basic'}
+            />
+            <Text style={styles.response}>
+              {error.type === 'birthday' ? error.response : ''}
             </Text>
             <Button onPress={() => signupPress()}>Sign Up</Button>
           </View>
