@@ -25,11 +25,9 @@ export default function StackNavigator() {
         </Navigator>
       ) : (
         <Navigator headerMode="none">
-          <Screen name="Main" component={Profile} />
+          <Screen name="Main" component={HomePage} />
         </Navigator>
       )}
     </>
   );
 }
-
-/*change user ? back to !user ? */

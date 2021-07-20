@@ -13,7 +13,7 @@ export async function signup(
       email,
       password,
     );
-    await createUser({...insertUserData, id: newUser.user.uid});
+    await createUser({...insertUserData, id: newUser.user.uid}, {email: email});
 
     return {
       status: 'success',

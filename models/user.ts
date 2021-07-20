@@ -4,6 +4,7 @@ export type User = {
   last_name: string;
   birthdayMonth: string;
   birthdayDay: string;
+  birthday: string;
   zodiacSign: string;
 };
 
@@ -13,6 +14,7 @@ export type InsertUser = {
   last_name: string;
   birthdayMonth: string;
   birthdayDay: string;
+  birthday: string;
 };
 
 export type UpdateUser = {
@@ -20,7 +22,12 @@ export type UpdateUser = {
   last_name?: string;
   birthdayMonth?: string;
   birthdayDay?: string;
+  birthday: string;
   zodiacSign?: string;
+};
+
+export type UserPrivate = {
+  email: string;
 };
 
 export type DBResult<T> = {

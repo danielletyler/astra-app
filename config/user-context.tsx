@@ -10,12 +10,14 @@ export const UserContext = React.createContext<UserProviderType>({
   user: undefined,
   isLoading: true,
   userId: '',
+  email: '',
 });
 
 type UserProviderType = {
   user: User | undefined;
   isLoading: boolean;
   userId: string;
+  email: string;
 };
 
 export const UserProvider = ({children}: {children: React.ReactNode}) => (
@@ -31,17 +33,23 @@ function useUser(): UserProviderType {
     isLoading: true,
   });
   const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     auth().onAuthStateChanged(userAuth => {
       if (userAuth) setUserId(userAuth.uid);
-      else setUser({user: undefined, isLoading: false});
+      else {
+        setUser({user: undefined, isLoading: false}),
+          setEmail(''),
+          setUserId('');
+      }
     });
   }, []);
 
   useEffect(() => {
     if (auth().currentUser?.uid) {
-      setUserId(auth().currentUser!.uid);
+      setUserId(auth().currentUser!.uid),
+        setEmail(auth().currentUser?.email as string);
     }
   }, []);
 
@@ -59,5 +67,6 @@ function useUser(): UserProviderType {
     user,
     isLoading,
     userId,
+    email,
   };
 }

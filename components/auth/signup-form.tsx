@@ -26,8 +26,7 @@ export default function SignUpForm() {
     confirmpassword: '',
     first_name: '',
     last_name: '',
-    birthdayMonth: '',
-    birthdayDay: '',
+    birthday: '',
   });
   const [error, setError] = useState({
     type: '',
@@ -71,8 +70,7 @@ export default function SignUpForm() {
           id: '',
           first_name: info.first_name,
           last_name: info.last_name,
-          birthdayMonth: info.birthdayMonth,
-          birthdayDay: info.birthdayDay,
+          birthday: info.birthday,
         });
         if (result.status === 'success') {
           Toast.show({type: 'success', text1: 'Success'});
@@ -198,27 +196,12 @@ export default function SignUpForm() {
               {error.type === 'confirmpassword' ? error.response : ''}
             </Text>
             <Input
-              placeholder="Birth Month as a number*"
-              value={info.birthdayMonth}
+              placeholder="Birthday* (mm/dd/yyyy)"
+              value={info.birthday}
               onChangeText={value =>
                 setInfo(prevState => ({
                   ...prevState,
-                  birthdayMonth: value,
-                }))
-              }
-              autoCapitalize="none"
-              status={error.type === 'birthmonth' ? 'danger' : 'basic'}
-            />
-            <Text style={styles.response}>
-              {error.type === 'birthmonth' ? error.response : ''}
-            </Text>
-            <Input
-              placeholder="Birth Day*"
-              value={info.birthdayDay}
-              onChangeText={value =>
-                setInfo(prevState => ({
-                  ...prevState,
-                  birthdayDay: value,
+                  birthday: value,
                 }))
               }
               autoCapitalize="none"

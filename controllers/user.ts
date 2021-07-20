@@ -1,8 +1,13 @@
 import firestore from '@react-native-firebase/firestore';
-import React from 'react';
-import {View} from 'react-native';
+import {getMonth, getDate} from 'date-fns';
 
-import {User, InsertUser, UpdateUser, DBResult} from '../models/user';
+import {
+  User,
+  InsertUser,
+  UpdateUser,
+  UserPrivate,
+  DBResult,
+} from '../models/user';
 
 const usersRef = firestore().collection('users');
 
@@ -52,17 +57,27 @@ export function getZodiacSign(day: number, month: number): string {
   return astro_sign;
 }
 
-export async function createUser(user: InsertUser): Promise<DBResult<User>> {
+export async function createUser(
+  user: InsertUser,
+  userPrivate: UserPrivate,
+): Promise<DBResult<User>> {
   try {
+    const birthdate = new Date(user.birthday);
+    const month = getMonth(birthdate) + 1;
+    const day = getDate(birthdate);
     const dbUser: User = {
-      zodiacSign: getZodiacSign(
-        Number(user.birthdayDay),
-        Number(user.birthdayMonth),
-      ),
+      zodiacSign: getZodiacSign(day, month),
       ...user,
     };
 
     await usersRef.doc(user.id).set(dbUser);
+
+    await usersRef
+      .doc(user.id)
+      .collection('UserPrivate')
+      .doc('UserPrivate')
+      .set(userPrivate);
+
     return {
       status: 'success',
       message: `Successfully created user with id ${user.id}`,
@@ -90,6 +105,29 @@ export async function getUser(userId: string): Promise<DBResult<User>> {
     return {
       status: 'error',
       message: `Failed to get user with id ${userId}: ${e}`,
+    };
+  }
+}
+
+export async function getUserPrivate(
+  userId: string,
+): Promise<DBResult<UserPrivate>> {
+  try {
+    const userPrivate = await usersRef
+      .doc(userId)
+      .collection('UserPrivate')
+      .doc('UserPrivate')
+      .get();
+    return {
+      status: 'success',
+      message: `Succesfully returned userPrivate`,
+      data: userPrivate.data() as UserPrivate,
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 'error',
+      message: `Failed to get userPrivate`,
     };
   }
 }

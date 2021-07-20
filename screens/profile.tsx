@@ -1,12 +1,15 @@
 import React, {useContext} from 'react';
 import {View} from 'react-native';
-import {Text, Avatar, Input, Button} from '@ui-kitten/components';
+import {Text, Avatar, Input} from '@ui-kitten/components';
 import {UserContext} from '../config/user-context';
 import defaultProfile from '../images/default_avatar.jpg';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Profile = () => {
   const {user} = useContext(UserContext);
+  const {email} = useContext(UserContext);
+
+  const bday = new Date(user?.birthday as string);
 
   return (
     <LinearGradient
@@ -47,13 +50,11 @@ const Profile = () => {
         </View>
         <View style={{flexDirection: 'row', paddingTop: 20, paddingLeft: 44}}>
           <Text style={{paddingRight: 5, color: 'white'}}>Email:</Text>
-          <Text style={{color: 'white'}}>user email here</Text>
+          <Text style={{color: 'white'}}>{email}</Text>
         </View>
         <View style={{flexDirection: 'row', paddingTop: 20, paddingLeft: 44}}>
           <Text style={{paddingRight: 5, color: 'white'}}>Birthday:</Text>
-          <Text style={{color: 'white'}}>{user?.birthdayMonth}</Text>
-          <Text style={{color: 'white'}}>/</Text>
-          <Text style={{color: 'white'}}>{user?.birthdayDay}</Text>
+          <Text style={{color: 'white'}}>{bday.toLocaleDateString()}</Text>
         </View>
         <View style={{flexDirection: 'row', paddingTop: 20, paddingLeft: 44}}>
           <Text style={{paddingRight: 5, color: 'white'}}>Field 3:</Text>
@@ -64,10 +65,13 @@ const Profile = () => {
             Change Password
           </Text>
           <View style={{flexDirection: 'row', paddingVertical: 10}}>
-            <Text style={{paddingTop: 5, color: 'white'}}>Old Password: </Text>
+            <Text style={{paddingTop: 5, color: 'white'}}>
+              Current Password:{' '}
+            </Text>
             <Input
               style={{borderColor: 'white'}}
               placeholder="current password"
+              placeholderTextColor="rgba(255, 255, 255, .50)"
               size="small"></Input>
           </View>
           <View style={{flexDirection: 'row', paddingVertical: 10}}>
@@ -75,6 +79,7 @@ const Profile = () => {
             <Input
               style={{borderColor: 'white'}}
               placeholder="new password"
+              placeholderTextColor="rgba(255, 255, 255, .50)"
               size="small"></Input>
           </View>
           <View style={{flexDirection: 'row', paddingVertical: 10}}>
@@ -84,6 +89,7 @@ const Profile = () => {
             <Input
               style={{borderColor: 'white'}}
               placeholder="new password"
+              placeholderTextColor="rgba(255, 255, 255, .50)"
               size="small"></Input>
           </View>
           <LinearGradient

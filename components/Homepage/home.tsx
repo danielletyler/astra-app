@@ -4,13 +4,10 @@ import {Text, Button} from '@ui-kitten/components';
 import {UserContext} from '../../config/user-context';
 // import LinearGradient from 'react-native-linear-gradient';
 import Video from 'react-native-video';
-import starsVideo from '../../ios/starsVideo.mp4';
 import pinkVideo from '../../ios/pinkVideo.mp4';
-import {useNavigation} from '@react-navigation/native';
 
 const Homepage = () => {
   const {user} = useContext(UserContext);
-  const navigation = useNavigation();
 
   return (
     <View style={{padding: 20}}>
