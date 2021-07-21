@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <LinearGradient
       style={{height: '100%'}}
-      colors={['#3F93F3', '#A165F6', '#E840F4']}
+      colors={['#FEF19A', '#FF85E7', '#8CBEF8']}
       start={{x: 0, y: 1}}
       end={{x: 1, y: 0}}>
       <View>

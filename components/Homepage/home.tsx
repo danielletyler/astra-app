@@ -4,7 +4,7 @@ import {Text, Button} from '@ui-kitten/components';
 import {UserContext} from '../../config/user-context';
 // import LinearGradient from 'react-native-linear-gradient';
 import Video from 'react-native-video';
-import pinkVideo from '../../ios/pinkVideo.mp4';
+import Gradient from '../../ios/gradient.mp4';
 
 const Homepage = () => {
   const {user} = useContext(UserContext);
@@ -12,9 +12,8 @@ const Homepage = () => {
   return (
     <View style={{padding: 20}}>
       <Video
-        source={pinkVideo}
-        rate={1.0}
-        muted={false}
+        source={Gradient}
+        rate={0.5}
         resizeMode={'cover'}
         repeat
         style={{position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}
@@ -57,7 +56,7 @@ const Homepage = () => {
         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
         officia deserunt mollit anim id est laborum.
       </Text>
-      <View style={{height: '25%'}}></View>
+      <View style={{height: '20%'}}></View>
       <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
         <Button style={{width: '30%', borderColor: 'white'}}>
           {evaProps => (
