@@ -23,7 +23,24 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {faBars, faTimes, faUserCircle} from '@fortawesome/free-solid-svg-icons';
-import SideMenu from 'react-native-side-menu';
+import {
+  NavigationContainer,
+  DrawerActions,
+  useNavigation,
+} from '@react-navigation/native';
+
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
+import Profile from '../../screens/profile.tsx';
+
+// import NavigationService from '../../NavigationService.js';
+// import Screen2 from '~components/screens/screen-2.tsx';
+import * as RootNavigation from '../../RootNavigation.js';
 
 library.add(fab, faBars, faTimes, faUserCircle);
 
@@ -35,41 +52,50 @@ const Account = () => (
   </Button>
 );
 
-export const ModalSimpleUsageShowcase = ({marg, setMarg}) => {
-  const [visible, setVisible] = useState(false);
+// export const ModalSimpleUsageShowcase = ({marg, setMarg}) => {
+//   const [visible, setVisible] = useState(false);
 
+//   return (
+//     <React.Fragment>
+//       <Button
+//         onPress={
+//           marg === '0%'
+//             ? (() => setMarg('50%'), () => setVisible(true))
+//             : () => setMarg('0%')
+//         }
+//         appearance="ghost">
+//         <FontAwesomeIcon icon="bars" />
+//       </Button>
+
+//       <Modal
+//         visible={visible}
+//         style={{
+//           backgroundColor: 'white',
+//           height: '100%',
+//           width: '100%',
+//         }}>
+//         <Button
+//           onPress={() => setVisible(false)}
+//           appearance="ghost"
+//           style={{marginTop: '15%', marginRight: '80%'}}>
+//           <FontAwesomeIcon icon="times" />
+//         </Button>
+//         <Button appearance="ghost">Page 1</Button>
+//         <Button appearance="ghost">Page 2</Button>
+//         <Button appearance="ghost">Page 3</Button>
+//         <Button appearance="ghost">Page 4</Button>
+//         <Button appearance="ghost">Page 5</Button>
+//       </Modal>
+//     </React.Fragment>
+//   );
+// };
+
+const OpenMenu = () => {
+  const navigation = useNavigation();
   return (
-    <React.Fragment>
-      <Button
-        onPress={
-          marg === '0%'
-            ? (() => setMarg('50%'), () => setVisible(true))
-            : () => setMarg('0%')
-        }
-        appearance="ghost">
-        <FontAwesomeIcon icon="bars" />
-      </Button>
-
-      <Modal
-        visible={visible}
-        style={{
-          backgroundColor: 'white',
-          height: '100%',
-          width: '100%',
-        }}>
-        <Button
-          onPress={() => setVisible(false)}
-          appearance="ghost"
-          style={{marginTop: '15%', marginRight: '80%'}}>
-          <FontAwesomeIcon icon="times" />
-        </Button>
-        <Button appearance="ghost">Page 1</Button>
-        <Button appearance="ghost">Page 2</Button>
-        <Button appearance="ghost">Page 3</Button>
-        <Button appearance="ghost">Page 4</Button>
-        <Button appearance="ghost">Page 5</Button>
-      </Modal>
-    </React.Fragment>
+    <Button onPress={() => navigation.openDrawer()} appearance="ghost">
+      <FontAwesomeIcon icon="bars" />
+    </Button>
   );
 };
 
@@ -79,9 +105,10 @@ const Layout: React.FC<{children: any}> = ({children}) => {
     <SafeAreaView style={{flex: 1, marginLeft: marg, position: 'relative'}}>
       <TopNavigation
         alignment="center"
-        accessoryLeft={() => (
-          <ModalSimpleUsageShowcase marg={marg} setMarg={setMarg} />
-        )}
+        // accessoryLeft={() => (
+        //   <ModalSimpleUsageShowcase marg={marg} setMarg={setMarg} />
+        // )}
+        accessoryLeft={OpenMenu}
         accessoryRight={Account}
         title={Title}
       />
