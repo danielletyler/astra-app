@@ -1,14 +1,13 @@
 import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
-// import LinearGradient from 'react-native-linear-gradient';
 import Video from 'react-native-video';
 import Gradient from '../../ios/gradient.mp4';
 import {UserContext} from '../../config/user-context';
 import {getMeditation} from '../../controllers/meditation';
 import {Meditation} from '~models/meditation';
 import {useEffect} from 'react';
-// import FeelingInput from './feeling-input';
+import Calendar from './calendar';
 
 const Homepage = () => {
   const [feeling, setFeeling] = useState<String | undefined>(undefined);
@@ -38,7 +37,13 @@ const Homepage = () => {
         rate={0.5}
         resizeMode={'cover'}
         repeat="forever"
-        style={{position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
       />
       <View>
         <Text style={{fontSize: 30, color: 'white', fontWeight: '700'}}>
@@ -71,7 +76,13 @@ const Homepage = () => {
             }}>
             Current Phenom
           </Text>
-          <Text style={{padding: 20, lineHeight: 25, color: 'white'}}>
+          <Text
+            style={{
+              padding: 20,
+              paddingBottom: 44,
+              lineHeight: 25,
+              color: 'white',
+            }}>
             {currentMeditation?.message as string}... Lorem ipsum dolor sit
             amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -79,6 +90,7 @@ const Homepage = () => {
             consequat. Duis aute irure dolor in reprehenderit in voluptate velit
             esse cillum dolore eu fugiat nulla pariatur.
           </Text>
+          <Calendar />
         </View>
       ) : (
         <View style={{paddingVertical: 44}}>
