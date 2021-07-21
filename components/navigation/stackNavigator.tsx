@@ -7,8 +7,6 @@ import {UserContext} from '../../config/user-context';
 import HomeScreen from '../../screens/home-screen';
 import Splash from '../shared/loading-splash';
 
-// import Profile from '../../screens/profile';
-
 export default function StackNavigator() {
   const {user, isLoading} = useContext(UserContext);
 

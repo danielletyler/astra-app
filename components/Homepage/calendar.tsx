@@ -4,7 +4,7 @@ import {Text} from '@ui-kitten/components';
 import {format, addDays} from 'date-fns';
 
 const Calendar = () => {
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(3);
 
   const currentDay = addDays(new Date(), 0);
 
