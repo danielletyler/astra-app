@@ -4,7 +4,7 @@ import LoginScreen from '../../screens/auth';
 import SignupScreen from '../../screens/signup';
 import ForgotPasswordScreen from '../../screens/forgot-password';
 import {UserContext} from '../../config/user-context';
-import HomePage from '../Homepage/home';
+import HomeScreen from '../../screens/home-screen';
 import Splash from '../shared/loading-splash';
 
 // import Profile from '../../screens/profile';
@@ -25,7 +25,7 @@ export default function StackNavigator() {
         </Navigator>
       ) : (
         <Navigator headerMode="none">
-          <Screen name="Main" component={HomePage} />
+          <Screen name="Main" component={HomeScreen} />
         </Navigator>
       )}
     </>
