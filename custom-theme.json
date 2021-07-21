@@ -75,5 +75,5 @@
   "color-danger-transparent-500": "rgba(198, 47, 125, 0.4)",
   "color-danger-transparent-600": "rgba(198, 47, 125, 0.48)",
 
-  "text-basic-color": "$color-primary-500"
+  "text-basic-color": "rgba(198, 47, 125, 0.48)"
 }
