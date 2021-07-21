@@ -1,13 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import {getMonth, getDate} from 'date-fns';
 
-import {
-  User,
-  InsertUser,
-  UpdateUser,
-  UserPrivate,
-  DBResult,
-} from '../models/user';
+import {User, InsertUser, UpdateUser, UserPrivate, DBResult} from '../models';
 
 const usersRef = firestore().collection('users');
 

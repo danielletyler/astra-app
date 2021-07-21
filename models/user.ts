@@ -23,9 +23,3 @@ export type UpdateUser = {
 export type UserPrivate = {
   email: string;
 };
-
-export type DBResult<T> = {
-  status: 'success' | 'error';
-  message: string;
-  data?: T;
-};
