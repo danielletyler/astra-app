@@ -6,7 +6,7 @@ import {format, addDays} from 'date-fns';
 const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
   setCurrentDay,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(3);
+  const [selectedIndex, setSelectedIndex] = useState(4);
   const [aValue, setAValue] = useState(140);
 
   const currentDay = addDays(new Date(), 0);
@@ -62,6 +62,7 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
               if (data.date > new Date()) return;
               setSelectedIndex(index);
               setCurrentDay(formatDay);
+              setAValue(datePosition[index]);
             }}>
             <Animated.View
               style={
