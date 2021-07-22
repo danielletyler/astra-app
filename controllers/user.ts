@@ -159,6 +159,31 @@ export async function getHistory(
   }
 }
 
+export async function getAllHistory(
+  userId: string,
+): Promise<DBResult<History[]>> {
+  try {
+    const histories: History[] = [];
+    const historyQuery = await usersRef.doc(userId).collection('History').get();
+
+    historyQuery.forEach(doc => {
+      histories.push(doc.data() as History);
+    });
+
+    return {
+      status: 'success',
+      message: `Successfully returned histories from user ${userId}`,
+      data: histories,
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 'error',
+      message: `Failed to get histories from user ${userId}`,
+    };
+  }
+}
+
 export async function getUserPrivate(
   userId: string,
 ): Promise<DBResult<UserPrivate>> {
