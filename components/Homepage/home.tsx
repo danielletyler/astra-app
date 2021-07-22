@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 import Video from 'react-native-video';
+import auth from '@react-native-firebase/auth';
+
 import Gradient from '../../ios/gradient.mp4';
 import {UserContext} from '../../config/user-context';
 import {getMeditation} from '../../controllers/meditation';
@@ -36,7 +38,7 @@ const Homepage = () => {
         source={Gradient}
         rate={0.5}
         resizeMode={'cover'}
-        repeat="forever"
+        repeat
         style={{
           position: 'absolute',
           top: 0,
@@ -56,6 +58,7 @@ const Homepage = () => {
           </Text>
         </View>
       </View>
+
       {feeling && currentMeditation?.message ? (
         <View>
           <Text
