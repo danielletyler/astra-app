@@ -1,18 +1,18 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {Layout} from '@ui-kitten/components';
+import Layout from '../components/shared/layout';
 import Homepage from '../components/Homepage/home';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}>
-      <Layout>
+    <Layout>
+      <SafeAreaView
+        style={{
+          flex: 1,
+        }}>
         <Homepage />
-      </Layout>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Layout>
   );
 };
 

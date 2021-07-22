@@ -4,8 +4,21 @@ import LoginScreen from '../../screens/auth';
 import SignupScreen from '../../screens/signup';
 import ForgotPasswordScreen from '../../screens/forgot-password';
 import {UserContext} from '../../config/user-context';
-import HomeScreen from '../../screens/home-screen';
+import HomePage from '../Homepage/home';
 import Splash from '../shared/loading-splash';
+import {NavigationContainer, DrawerActions} from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
+import Profile from '../../screens/profile';
+import Home from '../../screens/home-screen.tsx';
+import Screen1 from '../../screens/screen-1.tsx';
+
+const Drawer = createDrawerNavigator();
 
 export default function StackNavigator() {
   const {user, isLoading} = useContext(UserContext);
@@ -22,9 +35,11 @@ export default function StackNavigator() {
           <Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         </Navigator>
       ) : (
-        <Navigator headerMode="none">
-          <Screen name="Main" component={HomeScreen} />
-        </Navigator>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Profile" component={Profile} />
+          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="Screen 1" component={Screen1} />
+        </Drawer.Navigator>
       )}
     </>
   );
