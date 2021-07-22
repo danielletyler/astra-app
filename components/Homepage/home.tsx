@@ -74,6 +74,7 @@ const Homepage = () => {
           <Text style={{fontSize: 20, color: 'white'}}>{currentDay}</Text>
         </View>
       </View>
+
       {feeling && currentMeditation?.message ? (
         <View>
           <Text
