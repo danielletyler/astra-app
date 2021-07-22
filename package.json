@@ -42,7 +42,7 @@
     "react-native-toast-message": "^1.4.9",
     "react-native-video": "^5.1.1",
     "react-navigation": "^4.4.4",
-    "react-navigation-drawer": "^2.7.1",
+    "react-navigation-drawer": "react-navigation/drawer",
     "react-spring": "^9.2.4",
     "styled-components": "^5.3.0"
   },

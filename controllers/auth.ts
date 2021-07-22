@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import {DBResult, InsertUser} from '../models/user';
+import {DBResult, InsertUser} from '../models';
 import {validateEmail} from '../components/shared/utils';
 import {createUser} from '../controllers/user';
 

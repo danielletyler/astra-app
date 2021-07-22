@@ -14,40 +14,35 @@ const Profile = () => {
 
   return (
     <Layout>
-      <LinearGradient
-        style={{height: '100%'}}
-        colors={['#3F93F3', '#A165F6', '#E840F4']}
-        start={{x: 0, y: 1}}
-        end={{x: 1, y: 0}}>
-        <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              width: '80%',
-              padding: 20,
-              paddingTop: 40,
-            }}>
-            <Avatar source={defaultProfile} size="large" />
-            <View>
-              <View style={{flexDirection: 'row'}}>
-                <Text
-                  style={{
-                    fontSize: 25,
-                    paddingRight: 5,
-                    paddingBottom: 10,
-                    fontWeight: 'bold',
-                    color: 'white',
-                  }}>
-                  {user?.first_name}
-                </Text>
-                <Text
-                  style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
-                  {user?.last_name}
-                </Text>
-              </View>
-              <Text style={{fontSize: 20, color: 'white'}}>
-                {user?.zodiacSign.toUpperCase()}
+    <LinearGradient
+      style={{height: '100%'}}
+      colors={['#FEF19A', '#FF85E7', '#8CBEF8']}
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 0}}>
+      <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            width: '80%',
+            padding: 20,
+            paddingTop: 40,
+          }}>
+          <Avatar source={defaultProfile} size="large" />
+          <View>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  paddingRight: 5,
+                  paddingBottom: 10,
+                  fontWeight: 'bold',
+                  color: 'white',
+                }}>
+                {user?.first_name}
+              </Text>
+              <Text style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+                {user?.last_name}
               </Text>
             </View>
           </View>
