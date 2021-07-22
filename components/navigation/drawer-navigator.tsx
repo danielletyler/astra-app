@@ -15,23 +15,8 @@ import {
 } from '@react-navigation/drawer';
 
 import Profile from '../../screens/profile';
+import Home from '../../screens/home-screen.tsx';
 import Screen1 from '../../screens/screen-1.tsx';
-
-function CustomDrawerContent(props) {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
-      />
-    </DrawerContentScrollView>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 
@@ -50,9 +35,9 @@ export default function StackNavigator() {
           <Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         </Navigator>
       ) : (
-        <Drawer.Navigator
-          drawerContent={props => <CustomDrawerContent {...props} />}>
+        <Drawer.Navigator>
           <Drawer.Screen name="Profile" component={Profile} />
+          <Drawer.Screen name="Home" component={Home} />
           <Drawer.Screen name="Screen 1" component={Screen1} />
         </Drawer.Navigator>
       )}

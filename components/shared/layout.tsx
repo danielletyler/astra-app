@@ -38,19 +38,25 @@ import {
 
 import Profile from '../../screens/profile.tsx';
 
-// import NavigationService from '../../NavigationService.js';
-// import Screen2 from '~components/screens/screen-2.tsx';
 import * as RootNavigation from '../../RootNavigation.js';
 
 library.add(fab, faBars, faTimes, faUserCircle);
 
 const Title = () => <Text category="h1">Astra</Text>;
 
-const Account = () => (
-  <Button appearance="ghost">
-    <FontAwesomeIcon icon="user-circle" />
-  </Button>
-);
+function Account() {
+  const navigation = useNavigation();
+  return (
+    <Button
+      appearance="ghost"
+      accessoryLeft={() => (
+        <FontAwesomeIcon
+          icon="user-circle"
+          onPress={() => navigation.navigate('Profile')}
+        />
+      )}></Button>
+  );
+}
 
 // export const ModalSimpleUsageShowcase = ({marg, setMarg}) => {
 //   const [visible, setVisible] = useState(false);
@@ -93,16 +99,23 @@ const Account = () => (
 const OpenMenu = () => {
   const navigation = useNavigation();
   return (
-    <Button onPress={() => navigation.openDrawer()} appearance="ghost">
-      <FontAwesomeIcon icon="bars" />
-    </Button>
+    <Button
+      onPress={() => navigation.openDrawer()}
+      appearance="ghost"
+      accessoryLeft={() => <FontAwesomeIcon icon="bars" />}></Button>
   );
 };
 
 const Layout: React.FC<{children: any}> = ({children}) => {
   const [marg, setMarg] = useState('0%');
   return (
-    <SafeAreaView style={{flex: 1, marginLeft: marg, position: 'relative'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginLeft: marg,
+        position: 'relative',
+        paddingTop: '0%',
+      }}>
       <TopNavigation
         alignment="center"
         // accessoryLeft={() => (
