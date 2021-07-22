@@ -3,7 +3,9 @@ import {View, TouchableWithoutFeedback} from 'react-native';
 import {Text} from '@ui-kitten/components';
 import {format, addDays} from 'date-fns';
 
-const Calendar = () => {
+const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
+  setCurrentDay,
+}) => {
   const [selectedIndex, setSelectedIndex] = useState(3);
 
   const currentDay = addDays(new Date(), 0);
@@ -12,6 +14,7 @@ const Calendar = () => {
     return {
       dayOfWeek: format(addDays(currentDay, index - 3), 'E'),
       day: format(addDays(currentDay, index - 3), 'd'),
+      date: addDays(currentDay, index - 3),
     };
   });
 
@@ -23,8 +26,14 @@ const Calendar = () => {
         justifyContent: 'center',
       }}>
       {week.map((data, index) => {
+        const formatDay = format(data.date, 'M-dd-yyyy');
         return (
-          <TouchableWithoutFeedback onPress={() => setSelectedIndex(index)}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              if (data.date > new Date()) return;
+              setSelectedIndex(index);
+              setCurrentDay(formatDay);
+            }}>
             <View
               style={
                 selectedIndex === index

@@ -2,16 +2,20 @@ import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 import {Text, Button} from '@ui-kitten/components';
 import Video from 'react-native-video';
+import {format} from 'date-fns';
+
 import Gradient from '../../ios/gradient.mp4';
 import {UserContext} from '../../config/user-context';
 import {getMeditation} from '../../controllers/meditation';
-import {Meditation} from '~models/meditation';
+import {Meditation, User} from '../../models';
 import {useEffect} from 'react';
 import Calendar from './calendar';
+import {addHistory, getHistory} from '../../controllers/user';
 
 const Homepage = () => {
+  const date = format(new Date(), 'M-dd-yyyy');
+  const [currentDay, setCurrentDay] = useState(date);
   const [feeling, setFeeling] = useState<String | undefined>(undefined);
-
   const {user} = useContext(UserContext);
   const [currentMeditation, setCurrentMeditation] = useState<
     Meditation | undefined
@@ -23,12 +27,28 @@ const Homepage = () => {
     getMeditation(
       user?.zodiacSign as string,
       feeling as string,
-      '7-21-2021',
+      currentDay,
     ).then(res => {
       if (!res.data) return;
       return setCurrentMeditation(res.data);
     });
   }, [feeling]);
+
+  useEffect(() => {
+    if (!feeling) return;
+    if (!currentMeditation) return;
+    addHistory(user as User, {
+      date: currentDay,
+      feeling: feeling as string,
+    });
+  }, [feeling]);
+
+  useEffect(() => {
+    getHistory(user?.id as string, currentDay).then(r => {
+      if (!r.data) return setFeeling('default');
+      return setFeeling(r.data.feeling);
+    });
+  }, [currentDay]);
 
   return (
     <View style={{padding: 20, height: '100%'}}>
@@ -36,7 +56,7 @@ const Homepage = () => {
         source={Gradient}
         rate={0.5}
         resizeMode={'cover'}
-        repeat="forever"
+        repeat
         style={{
           position: 'absolute',
           top: 0,
@@ -51,9 +71,7 @@ const Homepage = () => {
         </Text>
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <Text style={{fontSize: 20, color: 'white'}}>for&nbsp;</Text>
-          <Text style={{fontSize: 20, color: 'white'}}>
-            {new Date().toDateString()}
-          </Text>
+          <Text style={{fontSize: 20, color: 'white'}}>{currentDay}</Text>
         </View>
       </View>
       {feeling && currentMeditation?.message ? (
@@ -90,7 +108,7 @@ const Homepage = () => {
             consequat. Duis aute irure dolor in reprehenderit in voluptate velit
             esse cillum dolore eu fugiat nulla pariatur.
           </Text>
-          <Calendar />
+          <Calendar setCurrentDay={setCurrentDay} />
         </View>
       ) : (
         <View style={{paddingVertical: 44}}>

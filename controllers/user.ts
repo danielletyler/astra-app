@@ -1,7 +1,14 @@
 import firestore from '@react-native-firebase/firestore';
 import {getMonth, getDate} from 'date-fns';
 
-import {User, InsertUser, UpdateUser, UserPrivate, DBResult} from '../models';
+import {
+  User,
+  InsertUser,
+  UpdateUser,
+  UserPrivate,
+  DBResult,
+  History,
+} from '../models';
 
 const usersRef = firestore().collection('users');
 
@@ -86,6 +93,31 @@ export async function createUser(
   }
 }
 
+export async function addHistory(
+  user: User,
+  history: History,
+): Promise<DBResult<History>> {
+  try {
+    await usersRef
+      .doc(user.id)
+      .collection('History')
+      .doc(history.date)
+      .set(history);
+
+    return {
+      status: 'success',
+      message: `Successfully added history for date ${history.date} to user ${user.id}`,
+      data: history,
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 'error',
+      message: `Failed to add history for date ${history.date} to user ${user.id}`,
+    };
+  }
+}
+
 export async function getUser(userId: string): Promise<DBResult<User>> {
   try {
     const user = await usersRef.doc(userId).get();
@@ -99,6 +131,30 @@ export async function getUser(userId: string): Promise<DBResult<User>> {
     return {
       status: 'error',
       message: `Failed to get user with id ${userId}: ${e}`,
+    };
+  }
+}
+
+export async function getHistory(
+  userId: string,
+  date: string,
+): Promise<DBResult<History>> {
+  try {
+    const history = await usersRef
+      .doc(userId)
+      .collection('History')
+      .doc(date)
+      .get();
+    return {
+      status: 'success',
+      message: `Successfully returned history for date ${date} from user ${userId}`,
+      data: history.data() as History,
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 'error',
+      message: `Failed to get history for sate ${date} from user ${userId}`,
     };
   }
 }

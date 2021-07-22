@@ -23,3 +23,8 @@ export type UpdateUser = {
 export type UserPrivate = {
   email: string;
 };
+
+export type History = {
+  date: string;
+  feeling: string;
+};
