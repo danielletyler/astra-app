@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import * as eva from '@eva-design/eva';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {
   TopNavigation,
   TopNavigationAction,
@@ -115,6 +116,7 @@ const Layout: React.FC<{children: any}> = ({children}) => {
         marginLeft: marg,
         position: 'relative',
         paddingTop: '0%',
+        backgroundColor: 'transparent',
       }}>
       <TopNavigation
         alignment="center"

@@ -13,12 +13,12 @@ const Profile = () => {
   const bday = new Date(user?.birthday as string);
 
   return (
-    <Layout>
-      <LinearGradient
-        style={{height: '100%'}}
-        colors={['#f0e390', '#e879d2', '#80ade0']}
-        start={{x: 0, y: 1}}
-        end={{x: 1, y: 0}}>
+    <LinearGradient
+      style={{height: '100%'}}
+      colors={['#f0e390', '#e879d2', '#80ade0']}
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 0}}>
+      <Layout>
         <View>
           <View
             style={{
@@ -151,8 +151,8 @@ const Profile = () => {
             </LinearGradient>
           </View>
         </View>
-      </LinearGradient>
-    </Layout>
+      </Layout>
+    </LinearGradient>
   );
 };
 
