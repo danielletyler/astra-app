@@ -7,7 +7,7 @@ import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import DrawerNavigator from './components/navigation/drawer-navigator.tsx';
+import DrawerNavigator from './components/navigation/drawer-navigator';
 import {NavigationContainer, DrawerActions} from '@react-navigation/native';
 import {UserProvider} from './config/user-context';
 

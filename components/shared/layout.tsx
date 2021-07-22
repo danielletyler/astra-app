@@ -49,12 +49,8 @@ function Account() {
   return (
     <Button
       appearance="ghost"
-      accessoryLeft={() => (
-        <FontAwesomeIcon
-          icon="user-circle"
-          onPress={() => navigation.navigate('Profile')}
-        />
-      )}></Button>
+      onPress={() => navigation.navigate('Profile')}
+      accessoryLeft={() => <FontAwesomeIcon icon="user-circle" />}></Button>
   );
 }
 
