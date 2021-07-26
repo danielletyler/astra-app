@@ -11,7 +11,7 @@ import {format, addDays} from 'date-fns';
 const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
   setCurrentDay,
 }) => {
-  const seven = Dimensions.get('window').width / 9;
+  const seven = Dimensions.get('window').width / 8.7;
   const [selectedIndex, setSelectedIndex] = useState(4);
   const [aValue, setAValue] = useState(seven * 4);
 
@@ -61,6 +61,7 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
           borderRadius: 10,
         }}
       />
+
       <View
         style={{
           flexDirection: 'row',
@@ -89,8 +90,14 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
                       }
                     : {padding: 10, margin: 5, zIndex: 99}
                 }>
-                <Text style={{color: 'white'}}>{data.dayOfWeek}</Text>
-                <Text style={{color: 'white'}}>{data.day}</Text>
+                <View style={{width: 40}}>
+                  <Text style={{color: 'white', alignSelf: 'center'}}>
+                    {data.dayOfWeek}
+                  </Text>
+                  <Text style={{color: 'white', alignSelf: 'center'}}>
+                    {data.day}
+                  </Text>
+                </View>
               </Animated.View>
             </TouchableWithoutFeedback>
           );
