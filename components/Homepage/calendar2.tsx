@@ -13,7 +13,7 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
 }) => {
   const seven = Dimensions.get('window').width / 9;
   const [selectedIndex, setSelectedIndex] = useState(4);
-  const [aValue, setAValue] = useState(seven * 3);
+  const [aValue, setAValue] = useState(seven * 4);
 
   const currentDay = addDays(new Date(), 0);
 
