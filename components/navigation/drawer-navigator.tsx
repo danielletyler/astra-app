@@ -36,8 +36,8 @@ export default function StackNavigator() {
         </Navigator>
       ) : (
         <Drawer.Navigator>
-          <Drawer.Screen name="Profile" component={Profile} />
           <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="Profile" component={Profile} />
           <Drawer.Screen name="Screen 1" component={Screen1} />
         </Drawer.Navigator>
       )}
