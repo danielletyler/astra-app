@@ -59,7 +59,7 @@ const Homepage = () => {
         source={Gradient}
         rate={0.5}
         resizeMode={'cover'}
-        repeat
+        repeat={true}
         style={{
           position: 'absolute',
           top: 0,
@@ -81,38 +81,41 @@ const Homepage = () => {
 
         {feeling && currentMeditation?.message ? (
           <View>
-            <Text
-              style={{
-                alignSelf: 'center',
-                marginTop: 44,
-                fontSize: 20,
-                color: 'white',
-              }}>
-              {user?.zodiacSign.toUpperCase()}
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                marginTop: 20,
-                fontSize: 15,
-                color: 'white',
-              }}>
-              Current Phenom
-            </Text>
-            <Text
-              style={{
-                padding: 20,
-                paddingBottom: 44,
-                lineHeight: 25,
-                color: 'white',
-              }}>
-              {currentMeditation?.message as string}... Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </Text>
+            <View style={{height: 400}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 44,
+                  fontSize: 20,
+                  color: 'white',
+                }}>
+                {user?.zodiacSign.toUpperCase()}
+              </Text>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 20,
+                  fontSize: 15,
+                  color: 'white',
+                }}>
+                Current Phenom
+              </Text>
+              <Text
+                style={{
+                  padding: 20,
+                  paddingBottom: 44,
+                  lineHeight: 25,
+                  color: 'white',
+                }}>
+                {currentMeditation?.message as string}... Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+              </Text>
+            </View>
             <Calendar setCurrentDay={setCurrentDay} />
             <Calendar2 setCurrentDay={setCurrentDay} />
           </View>
