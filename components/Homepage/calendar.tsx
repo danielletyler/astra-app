@@ -13,6 +13,8 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
 
   const datePosition = [-20, 40, 100, 160, 210, 260, 310];
 
+  const shadowLeft = [20, 10, 0, -5];
+
   const week = [...Array(7)].map((_, index) => {
     return {
       dayOfWeek: format(addDays(currentDay, index - 3), 'E'),
@@ -45,10 +47,10 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
       <Animated.View
         style={{
           backgroundColor: 'rgba(0,0,0,0.1)',
-          width: '20%',
+          width: '15%',
           height: '100%',
           position: 'absolute',
-          left: -20,
+          left: -10,
           transform: [{translateX: marginOf.current}],
           opacity: 1,
           borderRadius: 10,

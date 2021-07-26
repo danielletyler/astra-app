@@ -10,7 +10,7 @@ export async function getMeditation(
 ): Promise<DBResult<Meditation>> {
   try {
     const meditation = await medRef
-      .doc('virgo')
+      .doc(zodiacId.toLowerCase())
       .collection('meditation-items')
       .where('date', '==', date)
       .where('feeling', '==', feeling)

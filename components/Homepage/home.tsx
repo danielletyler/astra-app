@@ -10,6 +10,7 @@ import {getMeditation} from '../../controllers/meditation';
 import {Meditation, User} from '../../models';
 import {useEffect} from 'react';
 import Calendar from './calendar';
+import Calendar2 from './calendar2';
 import {addHistory, getHistory} from '../../controllers/user';
 // import { Layout } from '@react-navigation/drawer/lib/typescript/src/types';
 import Layout from '../../components/shared/layout';
@@ -113,6 +114,7 @@ const Homepage = () => {
               voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             </Text>
             <Calendar setCurrentDay={setCurrentDay} />
+            <Calendar2 setCurrentDay={setCurrentDay} />
           </View>
         ) : (
           <View style={{paddingVertical: 44}}>
