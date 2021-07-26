@@ -2,22 +2,8 @@ import React, {useState} from 'react';
 import * as eva from '@eva-design/eva';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StyleSheet} from 'react-native';
-import {
-  TopNavigation,
-  TopNavigationAction,
-  Icon,
-  Text,
-  IconRegistry,
-  Button,
-  MenuItem,
-  OverflowMenu,
-  Select,
-  SelectItem,
-  IndexPath,
-  View,
-  Card,
-  Modal,
-} from '@ui-kitten/components';
+import LinearGradient from 'react-native-linear-gradient';
+import {TopNavigation, Text, Button} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -111,6 +97,7 @@ const Layout: React.FC<{children: any}> = ({children}) => {
         marginLeft: marg,
         position: 'relative',
         paddingTop: '0%',
+        backgroundColor: 'transparent',
       }}>
       <TopNavigation
         alignment="center"

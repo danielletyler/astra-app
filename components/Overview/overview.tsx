@@ -6,13 +6,11 @@ import {FlatGrid} from 'react-native-super-grid';
 import {getAllHistory} from '../../controllers/user';
 import {UserContext} from '../../config/user-context';
 import {History} from '~models/user';
+import Layout from '../../components/shared/layout';
 
 const Overview = () => {
   const {user} = useContext(UserContext);
   const [data, setData] = useState<History[]>([]);
-  const good = '#79edbf';
-  const neutral = '#f2f18d';
-  const bad = '#f28dab';
 
   function getColor(feeling: string): string {
     if (feeling == 'good') return '#79edbf';
@@ -34,56 +32,58 @@ const Overview = () => {
       colors={['#f0e390', '#e879d2', '#80ade0']}
       start={{x: 0, y: 1}}
       end={{x: 1, y: 0}}>
-      <View style={{padding: 20}}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 25,
-            fontWeight: '700',
-            paddingBottom: 5,
-          }}>
-          Yearly Overview
-        </Text>
-        <View style={{flexDirection: 'row'}}>
+      <Layout>
+        <View style={{padding: 20}}>
           <Text
             style={{
               color: 'white',
-              fontSize: 20,
-              paddingRight: 5,
+              fontSize: 25,
+              fontWeight: '700',
+              paddingBottom: 5,
             }}>
-            Starting with
+            Yearly Overview
           </Text>
-
-          {data[0] ? (
+          <View style={{flexDirection: 'row'}}>
             <Text
               style={{
                 color: 'white',
                 fontSize: 20,
                 paddingRight: 5,
               }}>
-              {data[0].date}
+              Starting with
             </Text>
-          ) : (
-            <Text>no start date</Text>
-          )}
-        </View>
-        <View style={{paddingTop: 20}}>
-          <FlatGrid
-            itemDimension={25}
-            data={data}
-            renderItem={({item}) => (
-              <View
+
+            {data[0] ? (
+              <Text
                 style={{
-                  backgroundColor: getColor(item.feeling),
-                  padding: 5,
-                  borderRadius: 20,
+                  color: 'white',
+                  fontSize: 20,
+                  paddingRight: 5,
                 }}>
-                <Text style={{color: 'black'}}>{}</Text>
-              </View>
+                {data[0].date}
+              </Text>
+            ) : (
+              <Text>no start date</Text>
             )}
-          />
+          </View>
+          <View style={{paddingTop: 20}}>
+            <FlatGrid
+              itemDimension={25}
+              data={data}
+              renderItem={({item}) => (
+                <View
+                  style={{
+                    backgroundColor: getColor(item.feeling),
+                    padding: 5,
+                    borderRadius: 20,
+                  }}>
+                  <Text style={{color: 'black'}}>{}</Text>
+                </View>
+              )}
+            />
+          </View>
         </View>
-      </View>
+      </Layout>
     </LinearGradient>
   );
 };

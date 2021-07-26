@@ -11,6 +11,8 @@ import {Meditation, User} from '../../models';
 import {useEffect} from 'react';
 import Calendar from './calendar';
 import {addHistory, getHistory} from '../../controllers/user';
+// import { Layout } from '@react-navigation/drawer/lib/typescript/src/types';
+import Layout from '../../components/shared/layout';
 
 const Homepage = () => {
   const date = format(new Date(), 'M-dd-yyyy');
@@ -51,7 +53,7 @@ const Homepage = () => {
   }, [currentDay]);
 
   return (
-    <View style={{padding: 20, height: '100%'}}>
+    <View style={{paddingBottom: 20, height: '100%'}}>
       <Video
         source={Gradient}
         rate={0.5}
@@ -65,100 +67,102 @@ const Homepage = () => {
           right: 0,
         }}
       />
-      <View>
-        <Text style={{fontSize: 30, color: 'white', fontWeight: '700'}}>
-          Meditation{' '}
-        </Text>
-        <View style={{flexDirection: 'row', marginTop: 10}}>
-          <Text style={{fontSize: 20, color: 'white'}}>for&nbsp;</Text>
-          <Text style={{fontSize: 20, color: 'white'}}>{currentDay}</Text>
-        </View>
-      </View>
-
-      {feeling && currentMeditation?.message ? (
-        <View>
-          <Text
-            style={{
-              alignSelf: 'center',
-              marginTop: 44,
-              fontSize: 20,
-              color: 'white',
-            }}>
-            {user?.zodiacSign.toUpperCase()}
+      <Layout>
+        <View style={{paddingLeft: 20, paddingRight: 20}}>
+          <Text style={{fontSize: 30, color: 'white', fontWeight: '700'}}>
+            Meditation{' '}
           </Text>
-          <Text
-            style={{
-              alignSelf: 'center',
-              marginTop: 20,
-              fontSize: 15,
-              color: 'white',
-            }}>
-            Current Phenom
-          </Text>
-          <Text
-            style={{
-              padding: 20,
-              paddingBottom: 44,
-              lineHeight: 25,
-              color: 'white',
-            }}>
-            {currentMeditation?.message as string}... Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur.
-          </Text>
-          <Calendar setCurrentDay={setCurrentDay} />
-        </View>
-      ) : (
-        <View style={{paddingVertical: 44}}>
-          <Text
-            style={{
-              padding: 20,
-              paddingTop: 44,
-              color: 'white',
-              fontSize: 20,
-              alignSelf: 'center',
-            }}>
-            How are you feeling today?
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              padding: 20,
-            }}>
-            <Button
-              style={{borderColor: 'white'}}
-              onPress={() => setFeeling('good')}>
-              {evaProps => (
-                <Text {...evaProps} style={{color: 'white'}}>
-                  Pretty good!
-                </Text>
-              )}
-            </Button>
-            <Button
-              style={{borderColor: 'white'}}
-              onPress={() => setFeeling('neutral')}>
-              {evaProps => (
-                <Text {...evaProps} style={{color: 'white'}}>
-                  Alright
-                </Text>
-              )}
-            </Button>
-            <Button
-              style={{borderColor: 'white'}}
-              onPress={() => setFeeling('bad')}>
-              {evaProps => (
-                <Text {...evaProps} style={{color: 'white'}}>
-                  Not great
-                </Text>
-              )}
-            </Button>
+          <View style={{flexDirection: 'row', marginTop: 10}}>
+            <Text style={{fontSize: 20, color: 'white'}}>for&nbsp;</Text>
+            <Text style={{fontSize: 20, color: 'white'}}>{currentDay}</Text>
           </View>
         </View>
-      )}
+
+        {feeling && currentMeditation?.message ? (
+          <View>
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginTop: 44,
+                fontSize: 20,
+                color: 'white',
+              }}>
+              {user?.zodiacSign.toUpperCase()}
+            </Text>
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginTop: 20,
+                fontSize: 15,
+                color: 'white',
+              }}>
+              Current Phenom
+            </Text>
+            <Text
+              style={{
+                padding: 20,
+                paddingBottom: 44,
+                lineHeight: 25,
+                color: 'white',
+              }}>
+              {currentMeditation?.message as string}... Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </Text>
+            <Calendar setCurrentDay={setCurrentDay} />
+          </View>
+        ) : (
+          <View style={{paddingVertical: 44}}>
+            <Text
+              style={{
+                padding: 20,
+                paddingTop: 44,
+                color: 'white',
+                fontSize: 20,
+                alignSelf: 'center',
+              }}>
+              How are you feeling today?
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 20,
+              }}>
+              <Button
+                style={{borderColor: 'white'}}
+                onPress={() => setFeeling('good')}>
+                {evaProps => (
+                  <Text {...evaProps} style={{color: 'white'}}>
+                    Pretty good!
+                  </Text>
+                )}
+              </Button>
+              <Button
+                style={{borderColor: 'white'}}
+                onPress={() => setFeeling('neutral')}>
+                {evaProps => (
+                  <Text {...evaProps} style={{color: 'white'}}>
+                    Alright
+                  </Text>
+                )}
+              </Button>
+              <Button
+                style={{borderColor: 'white'}}
+                onPress={() => setFeeling('bad')}>
+                {evaProps => (
+                  <Text {...evaProps} style={{color: 'white'}}>
+                    Not great
+                  </Text>
+                )}
+              </Button>
+            </View>
+          </View>
+        )}
+      </Layout>
       <View style={{height: '20%'}}></View>
     </View>
   );
