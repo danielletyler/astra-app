@@ -36,7 +36,7 @@ const Homepage = () => {
 
   useEffect(() => {
     if (!feeling) return;
-    if (!currentMeditation) return;
+    // if (!currentMeditation) return;
     addHistory(user as User, {
       date: currentDay,
       feeling: feeling as string,

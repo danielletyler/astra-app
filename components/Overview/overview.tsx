@@ -53,13 +53,19 @@ const Overview = () => {
             }}>
             Starting with
           </Text>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 20,
-            }}>
-            {data[0].date}
-          </Text>
+
+          {data[0] ? (
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 20,
+                paddingRight: 5,
+              }}>
+              {data[0].date}
+            </Text>
+          ) : (
+            <Text>no start date</Text>
+          )}
         </View>
         <View style={{paddingTop: 20}}>
           <FlatGrid
