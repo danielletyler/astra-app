@@ -116,7 +116,7 @@ const Homepage = () => {
                 nulla pariatur.
               </Text>
             </View>
-            <Calendar setCurrentDay={setCurrentDay} />
+            {/* <Calendar setCurrentDay={setCurrentDay} /> */}
             <Calendar2 setCurrentDay={setCurrentDay} />
           </View>
         ) : (
