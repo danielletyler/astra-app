@@ -1,19 +1,19 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {useTheme} from '@ui-kitten/components';
-import Layout from '../components/shared/layout';
+import NavLayout from '../components/shared/layout';
 
 const Screen1 = () => {
   const theme = useTheme();
 
   return (
-    <Layout>
+    <NavLayout>
       <SafeAreaView
         style={{
           flex: 1,
           backgroundColor: theme['background-basic-color-1'],
         }}></SafeAreaView>
-    </Layout>
+    </NavLayout>
   );
 };
 

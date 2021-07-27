@@ -28,7 +28,11 @@ import * as RootNavigation from '../../RootNavigation.js';
 
 library.add(fab, faBars, faTimes, faUserCircle);
 
-const Title = () => <Text category="h1">Astra</Text>;
+const Title = () => (
+  <Text category="h1" style={{color: 'white'}}>
+    Astra
+  </Text>
+);
 
 function Account() {
   const navigation = useNavigation();
@@ -36,7 +40,9 @@ function Account() {
     <Button
       appearance="ghost"
       onPress={() => navigation.navigate('Profile')}
-      accessoryLeft={() => <FontAwesomeIcon icon="user-circle" />}></Button>
+      accessoryLeft={() => (
+        <FontAwesomeIcon icon="user-circle" color="white" />
+      )}></Button>
   );
 }
 
@@ -84,11 +90,13 @@ const OpenMenu = () => {
     <Button
       onPress={() => navigation.openDrawer()}
       appearance="ghost"
-      accessoryLeft={() => <FontAwesomeIcon icon="bars" />}></Button>
+      accessoryLeft={() => (
+        <FontAwesomeIcon icon="bars" color="white" />
+      )}></Button>
   );
 };
 
-const Layout: React.FC<{children: any}> = ({children}) => {
+const NavLayout: React.FC<{children: any}> = ({children}) => {
   const [marg, setMarg] = useState('0%');
   return (
     <SafeAreaView
@@ -113,4 +121,4 @@ const Layout: React.FC<{children: any}> = ({children}) => {
   );
 };
 
-export default Layout;
+export default NavLayout;

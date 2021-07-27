@@ -6,7 +6,7 @@ import {FlatGrid} from 'react-native-super-grid';
 import {getAllHistory} from '../../controllers/user';
 import {UserContext} from '../../config/user-context';
 import {History} from '~models/user';
-import Layout from '../../components/shared/layout';
+import NavLayout from '../../components/shared/layout';
 
 const Overview = () => {
   const {user} = useContext(UserContext);
@@ -32,7 +32,7 @@ const Overview = () => {
       colors={['#f0e390', '#e879d2', '#80ade0']}
       start={{x: 0, y: 1}}
       end={{x: 1, y: 0}}>
-      <Layout>
+      <NavLayout>
         <View style={{padding: 20}}>
           <Text
             style={{
@@ -83,7 +83,7 @@ const Overview = () => {
             />
           </View>
         </View>
-      </Layout>
+      </NavLayout>
     </LinearGradient>
   );
 };

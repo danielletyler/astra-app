@@ -13,7 +13,7 @@ import Calendar from './calendar';
 import Calendar2 from './calendar2';
 import {addHistory, getHistory} from '../../controllers/user';
 // import { Layout } from '@react-navigation/drawer/lib/typescript/src/types';
-import Layout from '../../components/shared/layout';
+import NavLayout from '../../components/shared/layout';
 
 const Homepage = () => {
   const date = format(new Date(), 'M-dd-yyyy');
@@ -68,7 +68,7 @@ const Homepage = () => {
           right: 0,
         }}
       />
-      <Layout>
+      <NavLayout>
         <View style={{paddingLeft: 20, paddingRight: 20}}>
           <Text style={{fontSize: 30, color: 'white', fontWeight: '700'}}>
             Meditation{' '}
@@ -167,7 +167,7 @@ const Homepage = () => {
             </View>
           </View>
         )}
-      </Layout>
+      </NavLayout>
       <View style={{height: '20%'}}></View>
     </View>
   );

@@ -4,7 +4,7 @@ import {Text, Avatar, Input} from '@ui-kitten/components';
 import {UserContext} from '../config/user-context';
 import defaultProfile from '../images/default_avatar.jpg';
 import LinearGradient from 'react-native-linear-gradient';
-import Layout from '../components/shared/layout';
+import NavLayout from '../components/shared/layout';
 
 const Profile = () => {
   const {user} = useContext(UserContext);
@@ -18,7 +18,7 @@ const Profile = () => {
       colors={['#f0e390', '#e879d2', '#80ade0']}
       start={{x: 0, y: 1}}
       end={{x: 1, y: 0}}>
-      <Layout>
+      <NavLayout>
         <View>
           <View
             style={{
@@ -151,7 +151,7 @@ const Profile = () => {
             </LinearGradient>
           </View>
         </View>
-      </Layout>
+      </NavLayout>
     </LinearGradient>
   );
 };

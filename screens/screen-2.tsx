@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
-import {Layout, useTheme} from '@ui-kitten/components';
+import {NavLayout, useTheme} from '@ui-kitten/components';
 
 const Screen2 = () => {
   const theme = useTheme();
@@ -11,7 +11,7 @@ const Screen2 = () => {
         flex: 1,
         backgroundColor: theme['background-basic-color-1'],
       }}>
-      <Layout></Layout>
+      <NavLayout></NavLayout>
     </SafeAreaView>
   );
 };
