@@ -46,7 +46,7 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'center',
-        // backgroundColor: 'orange',
+        backgroundColor: 'orange',
         borderRadius: 10,
       }}
       onLayout={event => {
@@ -75,21 +75,40 @@ const Calendar: React.FC<{setCurrentDay: (args: any) => void}> = ({
               setSelectedIndex(index);
               setCurrentDay(formatDay);
               setAValue((screenWidth.current / 7) * index);
-            }}>
+            }}
+            style={{backgroundColor: 'yellow'}}>
             <Animated.View
               style={
                 selectedIndex === index
                   ? {
-                      padding: 6,
+                      padding: 0,
                       borderRadius: 10,
-                      margin: 5,
+
+                      marginHorizontal: 0,
                       overflow: 'scroll',
                       zIndex: 99,
+                      // borderColor: 'white',
+                      // borderWidth: 1,
+                      width: '14.2%',
+                      height: '100%',
                     }
-                  : {padding: 6, margin: 5, zIndex: 99}
+                  : {
+                      padding: 0,
+                      marginHorizontal: 0,
+                      zIndex: 99,
+                      borderColor: 'white',
+                      // borderWidth: 1,
+                      // borderRadius: 10,
+                      width: '14.2%',
+                      height: '100%',
+                    }
               }>
-              <Text style={{color: 'white'}}>{data.dayOfWeek}</Text>
-              <Text style={{color: 'white'}}>{data.day}</Text>
+              <Text style={{color: 'white', textAlign: 'center'}}>
+                {data.dayOfWeek}
+              </Text>
+              <Text style={{color: 'white', textAlign: 'center'}}>
+                {data.day}
+              </Text>
             </Animated.View>
           </TouchableWithoutFeedback>
         );
