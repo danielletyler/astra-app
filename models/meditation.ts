@@ -5,3 +5,8 @@ export type Meditation = {
   date: string;
   feeling: string;
 };
+
+export type MeditationLazy = {
+  feeling: string;
+  message: string;
+};

@@ -6,32 +6,54 @@ import {format} from 'date-fns';
 
 import Gradient from '../../ios/gradient.mp4';
 import {UserContext} from '../../config/user-context';
-import {getMeditation} from '../../controllers/meditation';
-import {Meditation, User} from '../../models';
+import {getMeditation, getMeditationLazy} from '../../controllers/meditation';
+import {Meditation, User, DBResult, MeditationLazy} from '../../models';
 import {useEffect} from 'react';
-import Calendar from './calendar';
 import Calendar2 from './calendar2';
 import {addHistory, getHistory} from '../../controllers/user';
 // import { Layout } from '@react-navigation/drawer/lib/typescript/src/types';
 import NavLayout from '../../components/shared/layout';
+// import he from 'date-fns/esm/locale/he/index.js';
 
 const Homepage = () => {
   const date = format(new Date(), 'M-dd-yyyy');
   const [currentDay, setCurrentDay] = useState(date);
   const [feeling, setFeeling] = useState<String | undefined>(undefined);
   const {user} = useContext(UserContext);
+  const [synonym, setSynonym] = useState('');
+  const headerDate = new Date(currentDay.replaceAll('-', '/'));
+
+  //CORRECT USESTATE FOR WHEN ACTUAL MEDITATIONS BEING MADE DAILY
+  // const [currentMeditation, setCurrentMeditation] = useState<
+  //   Meditation | undefined
+  // >(undefined);
+
+  //CORRECT USE EFFECT FOR WHEN ACTUAL MEDITATIONS ARE BEING MADE DAILY
+  // useEffect(() => {
+  //   if (!feeling) return;
+
+  //   getMeditation(
+  //     user?.zodiacSign as string,
+  //     feeling as string,
+  //     currentDay,
+  //   ).then(res => {
+  //     if (!res.data) return;
+  //     return setCurrentMeditation(res.data);
+  //   });
+  // }, [feeling]);
+
+  //using this useState since we arent making mediations everyday
   const [currentMeditation, setCurrentMeditation] = useState<
-    Meditation | undefined
+    MeditationLazy | undefined
   >(undefined);
 
+  //using this useEffect since we arent making mediations everyday
   useEffect(() => {
+    const index = Math.floor(Math.random() * 9) + 1;
+
     if (!feeling) return;
 
-    getMeditation(
-      user?.zodiacSign as string,
-      feeling as string,
-      currentDay,
-    ).then(res => {
+    getMeditationLazy(feeling as string, index).then(res => {
       if (!res.data) return;
       return setCurrentMeditation(res.data);
     });
@@ -39,7 +61,7 @@ const Homepage = () => {
 
   useEffect(() => {
     if (!feeling) return;
-    // if (!currentMeditation) return;
+    if (!currentMeditation) return;
     addHistory(user as User, {
       date: currentDay,
       feeling: feeling as string,
@@ -48,10 +70,45 @@ const Homepage = () => {
 
   useEffect(() => {
     getHistory(user?.id as string, currentDay).then(r => {
-      if (!r.data) return setFeeling('default');
+      if (!r.data) return;
       return setFeeling(r.data.feeling);
     });
   }, [currentDay]);
+
+  useEffect(() => {
+    getSynonym(feeling as string).then(r => {
+      if (!r.data) return;
+      return setSynonym(r.data);
+    });
+  }, [feeling]);
+
+  async function getSynonym(feeling: string): Promise<DBResult<string>> {
+    console.log(feeling);
+    const good = ['wonderful', 'exceptional', 'pretty valued'];
+    const bad = ['pretty down', 'unfortunate', 'discouraged'];
+    const neutral = ['so-so', 'questionable', 'just okay'];
+    if (feeling == 'good')
+      return {
+        status: 'success',
+        message: '',
+        data: good[Math.floor(Math.random() * 2)] as string,
+      };
+    if (feeling == 'neutral')
+      return {
+        status: 'success',
+        message: '',
+        data: neutral[Math.floor(Math.random() * 2)] as string,
+      };
+    if (feeling == 'bad')
+      return {
+        status: 'success',
+        message: '',
+        data: bad[Math.floor(Math.random() * 2)] as string,
+      };
+    if (feeling == 'default')
+      return {status: 'success', message: '', data: '' as string};
+    return {status: 'success', message: '', data: '' as string};
+  }
 
   return (
     <View style={{paddingBottom: 20, height: '100%'}}>
@@ -70,24 +127,33 @@ const Homepage = () => {
       />
       <NavLayout>
         <View style={{paddingLeft: 20, paddingRight: 20}}>
-          <Text style={{fontSize: 30, color: 'white', fontWeight: '700'}}>
+          <Text
+            style={{
+              paddingTop: 44,
+              fontSize: 30,
+              color: 'white',
+              fontWeight: '700',
+            }}>
             Meditation{' '}
           </Text>
           <View style={{flexDirection: 'row', marginTop: 10}}>
             <Text style={{fontSize: 20, color: 'white'}}>for&nbsp;</Text>
-            <Text style={{fontSize: 20, color: 'white'}}>{currentDay}</Text>
+            <Text style={{fontSize: 20, color: 'white'}}>
+              {headerDate.toDateString()}
+            </Text>
           </View>
         </View>
 
         {feeling && currentMeditation?.message ? (
           <View>
-            <View style={{height: 400}}>
+            <View style={{height: 350}}>
               <Text
                 style={{
                   alignSelf: 'center',
                   marginTop: 44,
                   fontSize: 20,
                   color: 'white',
+                  paddingTop: 20,
                 }}>
                 {user?.zodiacSign.toUpperCase()}
               </Text>
@@ -100,20 +166,28 @@ const Homepage = () => {
                 }}>
                 Current Phenom
               </Text>
+              {feeling === 'default' ? (
+                <Text></Text>
+              ) : (
+                <Text
+                  style={{
+                    paddingTop: 20,
+                    paddingHorizontal: 20,
+                    lineHeight: 25,
+                    color: 'white',
+                  }}>
+                  As a {user?.zodiacSign as string} you are probably feeling{' '}
+                  {synonym}
+                </Text>
+              )}
               <Text
                 style={{
-                  padding: 20,
+                  paddingHorizontal: 20,
                   paddingBottom: 44,
                   lineHeight: 25,
                   color: 'white',
                 }}>
-                {currentMeditation?.message as string}... Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
+                {currentMeditation?.message as string}
               </Text>
             </View>
             {/* <Calendar setCurrentDay={setCurrentDay} /> */}
