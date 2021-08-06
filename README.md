@@ -14,16 +14,12 @@ This project was completed while interning at Breach Software and was a collabor
 
 ## Screenshots
 
-Initial Screen
 ![Initial](./initial.png)
 
-Home Screen
 ![Home](./home.png)
 
-Profile
 ![Profile](./profile.png)
 
-Overview
 ![Overview](./overview.png)
 
 ## Setup
