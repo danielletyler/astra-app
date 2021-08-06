@@ -21,10 +21,10 @@ Home Screen
 ![Home](./home.png)
 
 Profile
-![Profile](./profile)
+![Profile](./profile.png)
 
 Overview
-![Overview](./overview)
+![Overview](./overview.png)
 
 ## Setup
 
